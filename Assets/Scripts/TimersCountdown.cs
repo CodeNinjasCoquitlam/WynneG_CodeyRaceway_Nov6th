@@ -10,6 +10,9 @@ public class TimersCountdown : MonoBehaviour
     public float totalLapTime;
     public float totalCountdownTime;
     public CodeyMove codey;
+    public Text winLose;
+    public string WinLoseTxt;
+    public TriggerFinishLine o;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +27,7 @@ public class TimersCountdown : MonoBehaviour
             startCountdown.text = Mathf.Round(totalCountdownTime).ToString();
             codey.Speed = 0;
         }
-        if (totalCountdownTime < 0)
+        if (totalCountdownTime < 0&&o.GameOver==false)
         {
             startCountdown.text = "";
             totalLapTime -= Time.deltaTime;
@@ -34,6 +37,11 @@ public class TimersCountdown : MonoBehaviour
         if (totalLapTime < 0)
         {
             print("Time is up!");
+            codey.Speed = 0;
+            totalLapTime = 0;
+            WinLoseTxt = "You Lose!";
+            winLose.text = WinLoseTxt;
+
         }
     }
 }
